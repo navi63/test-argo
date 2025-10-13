@@ -1,0 +1,25 @@
+piVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: project-alpha
+  namespace: argocd
+spec:
+  description: Project Alpha - E-commerce Platform
+  sourceRepos:
+    - 'https://github.com/company/*'
+    - '*'
+  destinations:
+    - namespace: project-alpha
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist: []
+  namespaceResourceWhitelist:
+    - group: ''
+      kind: '*'
+    - group: 'apps'
+      kind: '*'
+    - group: 'batch'
+      kind: '*'
+    - group: 'networking.k8s.io'
+      kind: '*'
+    - group: 'autoscaling'
+      kind: '*'

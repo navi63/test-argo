@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: project-alpha
+  labels:
+    app: frontend
+    project: project-alpha
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: company/project-alpha-frontend:v1.0.0
+          ports:
+            - containerPort: 80
