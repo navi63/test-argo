@@ -20,4 +20,4 @@ spec:
         - name: frontend
           image: elestio/uptime-kuma:1.23.9
           ports:
-            - containerPort: 80
+            - containerPort: 3001
