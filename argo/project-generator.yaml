@@ -9,7 +9,7 @@ spec:
   generators:
     # Scan all folders in projects/ directory
     - git:
-        repoURL: https://github.com/company/argocd-repo.git
+        repoURL: https://github.com/navi63/test-argo.git
         revision: main
         directories:
           - path: projects/*
@@ -22,7 +22,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/company/argocd-repo.git
+        repoURL: https://github.com/navi63/test-argo.git
         targetRevision: main
         path: '{{.path.path}}'
         directory:
@@ -30,7 +30,9 @@ spec:
           include: |
             project.yaml
             namespace.yaml
-            apps/**/*.yaml
+            dev/**/*.yaml
+            staging/**/*.yaml
+            prod/**/*.yaml
       destination:
         server: https://kubernetes.default.svc
       syncPolicy:
