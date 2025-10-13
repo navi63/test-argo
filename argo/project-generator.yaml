@@ -29,7 +29,6 @@ spec:
           recurse: true
           include: |
             project.yaml
-            namespace.yaml
             dev/**/*.yaml
             staging/**/*.yaml
             prod/**/*.yaml
