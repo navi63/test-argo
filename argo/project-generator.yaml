@@ -1,48 +1,48 @@
-apiVersion: argoproj.io/v1alpha1
-kind: ApplicationSet
-metadata:
-  name: project-generator
-  namespace: argocd
-spec:
-  goTemplate: true
-  goTemplateOptions: ["missingkey=error"]
-  generators:
-    # Scan all folders in projects/ directory
-    - git:
-        repoURL: https://github.com/navi63/test-argo.git
-        revision: main
-        directories:
-          - path: projects/*
-  template:
-    metadata:
-      name: '{{.path.basename}}'
-      labels:
-        project: '{{.path.basename}}'
-        managed-by: argocd
-    spec:
-      project: default
-      source:
-        repoURL: https://github.com/navi63/test-argo.git
-        targetRevision: main
-        path: '{{.path.path}}'
-        directory:
-          recurse: true
-          include: |
-            project.yaml
-            dev/**/*.yaml
-            staging/**/*.yaml
-            prod/**/*.yaml
-      destination:
-        server: https://kubernetes.default.svc
-      syncPolicy:
-        automated:
-          prune: true
-          selfHeal: true
-        syncOptions:
-          - CreateNamespace=true
-        retry:
-          limit: 5
-          backoff:
-            duration: 5s
-            factor: 2
-            maxDuration: 3m
+# apiVersion: argoproj.io/v1alpha1
+# kind: ApplicationSet
+# metadata:
+#   name: project-generator
+#   namespace: argocd
+# spec:
+#   goTemplate: true
+#   goTemplateOptions: ["missingkey=error"]
+#   generators:
+#     # Scan all folders in projects/ directory
+#     - git:
+#         repoURL: https://github.com/navi63/test-argo.git
+#         revision: main
+#         directories:
+#           - path: projects/*
+#   template:
+#     metadata:
+#       name: '{{.path.basename}}'
+#       labels:
+#         project: '{{.path.basename}}'
+#         managed-by: argocd
+#     spec:
+#       project: default
+#       source:
+#         repoURL: https://github.com/navi63/test-argo.git
+#         targetRevision: main
+#         path: '{{.path.path}}'
+#         directory:
+#           recurse: true
+#           include: |
+#             project.yaml
+#             dev/**/*.yaml
+#             staging/**/*.yaml
+#             prod/**/*.yaml
+#       destination:
+#         server: https://kubernetes.default.svc
+#       syncPolicy:
+#         automated:
+#           prune: true
+#           selfHeal: true
+#         syncOptions:
+#           - CreateNamespace=true
+#         retry:
+#           limit: 5
+#           backoff:
+#             duration: 5s
+#             factor: 2
+#             maxDuration: 3m
