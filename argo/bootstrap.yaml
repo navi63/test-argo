@@ -3,14 +3,14 @@ kind: Application
 metadata:
   name: bootstrap
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  # finalizers:
+  #   - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
     repoURL: https://github.com/navi63/test-argo.git
-    targetRevision: main
-    path: argocd
+    targetRevision: HEAD
+    path: projects
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
