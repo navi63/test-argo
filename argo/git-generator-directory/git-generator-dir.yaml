@@ -9,7 +9,7 @@ spec:
       repoURL: https://github.com/navi63/test-argo.git
       revision: HEAD
       directories:
-      - path: projects/*
+      - path: argo/git-generator-directory/projects/*
   template:
     metadata:
       name: '{{path.basename}}'
